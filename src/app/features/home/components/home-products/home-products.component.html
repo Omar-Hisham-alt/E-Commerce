@@ -1,0 +1,19 @@
+<section class="px-20 py-10">
+  <!-- header section -->
+  <app-section-header [title]="'Common Products'" />
+
+  <!-- allProducts -->
+  @if (!productsService.allProducts) {
+
+  <app-loading-spinner />
+
+  } @else {
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+    @for (product of productsService.allProducts; track $index) {
+    <app-card-products [product]="product" />
+    }
+  </div>
+
+  }
+</section>

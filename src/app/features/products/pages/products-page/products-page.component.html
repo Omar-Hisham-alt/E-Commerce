@@ -1,0 +1,23 @@
+<section class="px-20 py-10">
+  <!-- header section -->
+  <app-section-header [title]="'All Products'" />
+
+  <!-- allProducts -->
+  @if (!productsService.allProducts) {
+
+  <app-loading-spinner />
+
+  } @else {
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+    @for (product of productsService.allProducts | paginate: { itemsPerPage: limit, currentPage:
+    page, totalItems: productsService.totalProducts}; track $index) {
+    <app-card-products [product]="product" />
+    }
+  </div>
+
+  <div class="flex justify-center items-center my-5">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+  }
+</section>

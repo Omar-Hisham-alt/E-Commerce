@@ -1,0 +1,41 @@
+<div class="h-full relative overflow-hidden group bg-white main-card-hover">
+  <div
+    class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden flex flex-col"
+  >
+    <img
+      class="lg:h-72 md:h-36 w-full object-contain object-center"
+      [src]="product.imageCover"
+      [alt]="product.title"
+    />
+    <div class="p-6 flex flex-col grow justify-between">
+      <div>
+        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>
+        <h2 class="title-font text-lg font-medium text-gray-900 mb-3 line-clamp-1">
+          {{ product.title }}
+        </h2>
+        <p class="leading-relaxed mb-3 line-clamp-2">
+          {{ product.description }}
+        </p>
+      </div>
+      <div>
+        <button class="btn-main w-full flex justify-center items-center mb-2">Add to Cart</button>
+        <div class="flex justify-between items-center">
+          <span class="text-black font-bold inline-flex items-center leading-none text-sm">
+            Price {{ product.price }}
+          </span>
+          <span
+            class="text-rating inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1"
+          >
+            {{ product.ratingsAverage }} <i class="far fa-star"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="absolute top-5 end-5 cursor-pointer translate-x-[150%] group-hover:translate-x-0 duration-700"
+  >
+    <i class="far fa-heart text-red-800 text-3xl"></i>
+  </button>
+</div>
