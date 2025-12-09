@@ -14,3 +14,9 @@ body {
     @apply rounded-lg hover:shadow-main border-2 border-transparent hover:border-main-400 duration-500 transition-all;
   }
 }
+
+@layer components {
+  .main-input {
+    @apply block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand;
+  }
+}

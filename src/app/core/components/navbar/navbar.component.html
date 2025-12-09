@@ -52,7 +52,11 @@
         </li>
         } @else {
         <li>
-          <a routerLink="/home" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
+          <a
+            routerLink="/home"
+            routerLinkActive="active-link"
+            [queryParamsHandling]="'merge'"
+            class="block py-2 px-3 capitalize"
             >home</a
           >
         </li>

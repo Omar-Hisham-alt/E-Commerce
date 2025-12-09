@@ -1,6 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoadingSpinnerComponent } from '../../../../shared/components/loading-spinner/loading-spinner.component';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
@@ -23,9 +23,15 @@ export class ProductsPageComponent implements OnInit {
   // include all the navigation control
   public readonly router = inject(Router);
   public readonly viewportScroller = inject(ViewportScroller);
+  public readonly activatedRoute = inject(ActivatedRoute);
 
   page = 1;
   limit = 8;
+
+  constructor() {
+    const page = +this.activatedRoute.snapshot.queryParamMap.get('page')!;
+    this.page = page ? page : 1;
+  }
 
   ngOnInit(): void {
     this.getAllProducts();
