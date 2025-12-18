@@ -9,12 +9,12 @@
       <form class="mx-auto sm:w-9/12 md:w-1/2">
         <div class="relative z-0 w-full mb-5 group">
           <input
+            [formControl]="userEmail"
             type="email"
             name="userEmail"
             id="userEmail"
             class="main-input peer"
             placeholder=" "
-            required
           />
           <label
             for="userEmail"
@@ -22,14 +22,13 @@
             >User Email</label
           >
         </div>
-        <div class="relative z-0 w-full mb-5 group">
+        <!-- <div class="relative z-0 w-full mb-5 group">
           <input
             type="password"
             name="userPassword"
             id="userPassword"
             class="main-input peer"
             placeholder=" "
-            required
           />
           <label
             for="userPassword"
@@ -44,16 +43,15 @@
             id="floating_userRepassword"
             class="main-input peer"
             placeholder=" "
-            required
           />
           <label
             for="floating_userRepassword"
             class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-left peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >repassword</label
           >
-        </div>
+        </div> -->
         <button
-          type="submit"
+          (click)="submitData()"
           class="w-full cursor-pointer text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
         >
           Submit
