@@ -1,3 +1,4 @@
+import { authGuard } from './core/guards/auth-guard';
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
@@ -6,11 +7,14 @@ import { BRANDS_ROUTES } from './features/brands/brands.routes';
 import { Categories_Routes } from './features/categories/categories.routes';
 import { HOME_ROUTES } from './features/home/home.routes';
 import { PRODUCTS_ROUTES } from './features/products/products.routes';
+import { loggedGuard } from './core/guards/logged-guard';
+import { ProductDetailsComponent } from './features/products/pages/product-details/product-details.component';
 
 export const routes: Routes = [
   // auth
   {
     path: '',
+    canActivate: [loggedGuard],
     component: AuthLayoutComponent,
     children: AUTH_ROUTES,
   },
@@ -18,6 +22,7 @@ export const routes: Routes = [
   // user
   {
     path: '',
+    canActivate: [authGuard],
     component: MainLayoutComponent,
     children: [
       {
@@ -28,6 +33,11 @@ export const routes: Routes = [
       {
         path: 'products',
         children: PRODUCTS_ROUTES,
+      },
+
+      {
+        path: 'details/:id/:slug',
+        component: ProductDetailsComponent,
       },
 
       {
@@ -47,7 +57,7 @@ export const routes: Routes = [
     path: 'not-found',
     loadComponent: () =>
       import('./features/static-pages/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent
+        (m) => m.NotFoundComponent,
       ),
   },
 

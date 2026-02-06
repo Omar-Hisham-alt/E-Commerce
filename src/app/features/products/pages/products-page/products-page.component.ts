@@ -43,6 +43,7 @@ export class ProductsPageComponent implements OnInit {
 
   pageChanged($event: number): void {
     this.page = $event;
+    this.productsService.allProducts = [];
     this.getAllProducts();
 
     this.router.navigate([], {

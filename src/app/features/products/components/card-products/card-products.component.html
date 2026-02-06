@@ -2,11 +2,13 @@
   <div
     class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden flex flex-col"
   >
-    <img
-      class="lg:h-72 md:h-36 w-full object-contain object-center"
-      [src]="product.imageCover"
-      [alt]="product.title"
-    />
+    <a [routerLink]="['/details', product._id, product.slug]">
+      <img
+        class="lg:h-72 md:h-36 w-full object-contain object-center"
+        [src]="product.imageCover"
+        [alt]="product.title"
+      />
+    </a>
     <div class="p-6 flex flex-col grow justify-between">
       <div>
         <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY</h2>

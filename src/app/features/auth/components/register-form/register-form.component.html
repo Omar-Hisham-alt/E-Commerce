@@ -1,1 +1,97 @@
-<p>register-form works!</p>
+<form [formGroup]="registerForm">
+  <div class="mt-10">
+    <div class="mx-auto sm:w-9/12 md:w-1/2">
+      <!-- (input field): user name -->
+      <app-auth-input
+        [control]="registerForm.get('name')"
+        formControlName="name"
+        [type]="'text'"
+        [name]="'userName'"
+        [id]="'userName'"
+        [label]="'Name'"
+        placeholder=" "
+      />
+
+      <!-- (input field): user email -->
+      <app-auth-input
+        [control]="registerForm.get('email')"
+        formControlName="email"
+        [type]="'email'"
+        [name]="'userEmail'"
+        [id]="'userEmail'"
+        [label]="'Email'"
+        placeholder=" "
+      />
+
+      <!-- (input field): user password -->
+      <app-auth-input
+        [control]="registerForm.get('password')"
+        formControlName="password"
+        [type]="'password'"
+        [name]="'userPassword'"
+        [id]="'userPassword'"
+        [label]="'Password'"
+        placeholder=" "
+      />
+
+      <!-- (input field): user rePassword -->
+      <app-auth-input
+        [control]="registerForm.get('rePassword')"
+        formControlName="rePassword"
+        [type]="'password'"
+        [name]="'userrePassword'"
+        [id]="'userrePassword'"
+        [label]="'rePassword'"
+        placeholder=" "
+        [group]="registerForm"
+      />
+
+      <!-- (input field): user phone -->
+      <app-auth-input
+        [control]="registerForm.get('phone')"
+        formControlName="phone"
+        [type]="'tel'"
+        [name]="'userPhone'"
+        [id]="'userPhone'"
+        [label]="'Phone'"
+        placeholder=" "
+      />
+
+      <!-- Register Button -->
+      <div>
+        <button
+          (click)="submitData()"
+          [disabled]="isLoading"
+          [class.bg-white]="isLoading"
+          [class.text-black]="isLoading"
+          class="w-full main-btn"
+        >
+          @if (isLoading) {
+            <i class="fas fa-spinner fa-spin"></i>
+          } @else {
+            Register
+          }
+        </button>
+      </div>
+
+      @if (errorMessage) {
+        <div class="mt-5">
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold">
+              {{ errorMessage }}
+            </p>
+          </div>
+        </div>
+      } @else if (successMessage) {
+        <div class="mt-5">
+          <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+            <p class="font-bold">
+              {{ successMessage }}
+            </p>
+            <p>You will be redirected in {{ redirectCounter }} seconds...</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</form>

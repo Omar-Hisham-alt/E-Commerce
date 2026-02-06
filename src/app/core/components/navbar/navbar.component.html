@@ -33,64 +33,65 @@
         class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:mt-0 md:border-0 md:bg-neutral-primary"
       >
         @if (!isLogin) {
-        <li>
-          <button
-            routerLink="/login"
-            routerLinkActive="active-link"
-            class="block py-2 px-3 capitalize cursor-pointer"
-          >
-            login
-          </button>
-        </li>
-        <li>
-          <a
-            routerLink="/register"
-            routerLinkActive="active-link"
-            class="block py-2 px-3 capitalize"
-            >register</a
-          >
-        </li>
+          <li>
+            <button
+              routerLink="/login"
+              routerLinkActive="active-link"
+              class="block py-2 px-3 capitalize cursor-pointer"
+            >
+              login
+            </button>
+          </li>
+          <li>
+            <a
+              routerLink="/register"
+              routerLinkActive="active-link"
+              class="block py-2 px-3 capitalize"
+              >register</a
+            >
+          </li>
         } @else {
-        <li>
-          <a
-            routerLink="/home"
-            routerLinkActive="active-link"
-            [queryParamsHandling]="'merge'"
-            class="block py-2 px-3 capitalize"
-            >home</a
-          >
-        </li>
-        <li>
-          <a routerLink="/cart" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
-            >cart</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/products"
-            routerLinkActive="active-link"
-            class="block py-2 px-3 capitalize"
-            >products</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/categories"
-            routerLinkActive="active-link"
-            class="block py-2 px-3 capitalize"
-            >categories</a
-          >
-        </li>
-        <li>
-          <a routerLink="/brands" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
-            >brands</a
-          >
-        </li>
-        <li>
-          <a routerLink="/login" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
-            >logout</a
-          >
-        </li>
+          <li>
+            <a
+              routerLink="/home"
+              routerLinkActive="active-link"
+              [queryParamsHandling]="'merge'"
+              class="block py-2 px-3 capitalize"
+              >home</a
+            >
+          </li>
+          <li>
+            <a routerLink="/cart" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
+              >cart</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/products"
+              routerLinkActive="active-link"
+              class="block py-2 px-3 capitalize"
+              >products</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/categories"
+              routerLinkActive="active-link"
+              class="block py-2 px-3 capitalize"
+              >categories</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/brands"
+              routerLinkActive="active-link"
+              class="block py-2 px-3 capitalize"
+              >brands</a
+            >
+          </li>
+          <li>
+            <a (click)="logOut()" class="block py-2 px-3 capitalize cursor-pointer">logout</a>
+          </li>
         }
       </ul>
     </div>
