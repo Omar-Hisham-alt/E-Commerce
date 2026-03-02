@@ -1,9 +1,11 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoadingSpinnerComponent } from '../../../../shared/components/loading-spinner/loading-spinner.component';
 import { SectionHeaderComponent } from '../../../../shared/components/section-header/section-header.component';
+import { FilterPipe } from '../../../../shared/pipes/filter.pipe';
 import { CardProductsComponent } from '../../components/card-products/card-products.component';
 import { ProductsService } from '../../services/products.service';
 
@@ -14,6 +16,8 @@ import { ProductsService } from '../../services/products.service';
     SectionHeaderComponent,
     LoadingSpinnerComponent,
     NgxPaginationModule,
+    FormsModule,
+    FilterPipe,
   ],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.css',
@@ -27,6 +31,7 @@ export class ProductsPageComponent implements OnInit {
 
   page = 1;
   limit = 8;
+  searchText = '';
 
   constructor() {
     const page = +this.activatedRoute.snapshot.queryParamMap.get('page')!;

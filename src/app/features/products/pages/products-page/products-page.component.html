@@ -6,9 +6,25 @@
   @if (!productsService.allProducts) {
     <app-loading-spinner />
   } @else {
+    <!-- Search Input -->
+    <div class="my-10">
+      <input
+        [(ngModel)]="searchText"
+        type="search"
+        class="main-input shadow-2xl border rounded-4xl p-3"
+        placeholder="Search..."
+      />
+    </div>
+
+    <!-- Custom Pipes -->
+    <!-- <div>
+      <p class="text-2xl">{{ searchText | textLowerCase | textUpperCase }}</p>
+    </div> -->
+
     <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
       @for (
         product of productsService.allProducts
+          | filter: searchText : ['title', '_id']
           | paginate
             : { itemsPerPage: limit, currentPage: page, totalItems: productsService.totalProducts };
         track $index

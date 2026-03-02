@@ -12,10 +12,15 @@ export const APP_APIS = {
   BRANDS: {
     allBrands: `${environment.baseUrl}brands`,
   },
+
   AUTH: {
     signup: `${environment.baseUrl}auth/signup`,
     login: `${environment.baseUrl}auth/signin`,
     forgetPassword: `${environment.baseUrl}auth/forgotPasswords`,
     verifyToken: `${environment.baseUrl}auth/verifyToken`,
+  },
+
+  CART: {
+    data: `${environment.baseUrl}cart`,
   },
 };

@@ -9,6 +9,7 @@ import { HOME_ROUTES } from './features/home/home.routes';
 import { PRODUCTS_ROUTES } from './features/products/products.routes';
 import { loggedGuard } from './core/guards/logged-guard';
 import { ProductDetailsComponent } from './features/products/pages/product-details/product-details.component';
+import { CART_ROUTES } from './features/cart/cart.routes';
 
 export const routes: Routes = [
   // auth
@@ -36,6 +37,11 @@ export const routes: Routes = [
       },
 
       {
+        path: 'details/:id',
+        component: ProductDetailsComponent,
+      },
+
+      {
         path: 'details/:id/:slug',
         component: ProductDetailsComponent,
       },
@@ -48,6 +54,11 @@ export const routes: Routes = [
       {
         path: 'brands',
         children: BRANDS_ROUTES,
+      },
+
+      {
+        path: 'cart',
+        children: CART_ROUTES,
       },
     ],
   },
