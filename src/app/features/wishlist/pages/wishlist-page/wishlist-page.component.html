@@ -1,0 +1,10 @@
+<section class="py-8 antialiased md:py-16">
+  <div class="w-full mx-auto max-w-7xl px-4 2xl:px-0">
+    <h2 class="text-xl font-semibold text-gray-900 sm:text-3xl mb-5">Wishlist</h2>
+    @if (!wishlistService.userWishlist) {
+      <app-loading-spinner />
+    } @else {
+      <app-wishlist />
+    }
+  </div>
+</section>

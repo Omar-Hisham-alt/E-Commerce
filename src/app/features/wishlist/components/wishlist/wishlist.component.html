@@ -1,0 +1,47 @@
+<div
+  class="mx-auto w-full grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 sm:gap-5"
+>
+  @for (product of wishlistService.userWishlist; track $index) {
+    <div
+      class="lg:w-full md:w-3/4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6 mb-0"
+    >
+      <div class="space-y-4 flex items-center lg:justify-between gap-6 md:space-y-0">
+        <!--Right section  -->
+        <div>
+          <a [href]="product.imageCover" class="shrink-0 md:order-1">
+            <img class="h-56 w-60 block" [src]="product.imageCover" [alt]="product.title" />
+          </a>
+        </div>
+
+        <!-- Left Section -->
+        <div class="h-56 w-60 block lg:flex flex-col justify-between">
+          <div class="text-start md:order-1">
+            <p class="title-font text-lg font-medium text-gray-900 mb-3 line-clamp-1">
+              {{ product.title }}
+            </p>
+            <p class="w-full block leading-relaxed mb-3 line-clamp-2">
+              {{ product.description }}
+            </p>
+          </div>
+
+          <div class="flex justify-between items-center md:order-2">
+            <span class="text-black font-bold inline-flex items-center leading-none text-sm">
+              Price {{ product.price }} $
+            </span>
+            <span
+              class="text-rating inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1"
+            >
+              {{ product.ratingsAverage }} <i class="far fa-star"></i>
+            </span>
+          </div>
+
+          <div class="min-w-0 space-y-4 md:order-3 md:max-w-md">
+            <button class="btn-main bg-red-600 w-full flex justify-center items-center mb-2">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

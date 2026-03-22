@@ -10,6 +10,7 @@ import { PRODUCTS_ROUTES } from './features/products/products.routes';
 import { loggedGuard } from './core/guards/logged-guard';
 import { ProductDetailsComponent } from './features/products/pages/product-details/product-details.component';
 import { CART_ROUTES } from './features/cart/cart.routes';
+import { WISHLIST_ROUTES } from './features/wishlist/wishlist.routes';
 
 export const routes: Routes = [
   // auth
@@ -59,6 +60,11 @@ export const routes: Routes = [
       {
         path: 'cart',
         children: CART_ROUTES,
+      },
+
+      {
+        path: 'wishlist',
+        children: WISHLIST_ROUTES,
       },
     ],
   },

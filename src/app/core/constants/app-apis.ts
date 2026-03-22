@@ -23,4 +23,8 @@ export const APP_APIS = {
   CART: {
     data: `${environment.baseUrl}cart`,
   },
+
+  WISHLIST: {
+    data: `${environment.baseUrl}wishlist`,
+  },
 };
