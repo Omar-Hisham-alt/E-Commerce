@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ForgetPasswordPageComponent } from './pages/forget-password-page/forget-password-page.component';
+import { ResetCodePageComponent } from './pages/reset-code-page/reset-code-page.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 
 export const AUTH_ROUTES: Routes = [
   {
@@ -23,5 +25,15 @@ export const AUTH_ROUTES: Routes = [
   {
     path: 'forget-password',
     component: ForgetPasswordPageComponent,
+  },
+
+  {
+    path: 'verify-reset-code',
+    component: ResetCodePageComponent,
+  },
+
+  {
+    path: 'reset-password',
+    component: ResetPasswordPageComponent,
   },
 ];

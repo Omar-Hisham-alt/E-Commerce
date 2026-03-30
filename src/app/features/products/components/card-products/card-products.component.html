@@ -36,9 +36,13 @@
   </div>
 
   <button
-    routerLink="/wishlist"
     class="absolute top-5 end-5 cursor-pointer translate-x-[150%] group-hover:translate-x-0 duration-700"
+    (click)="this.flag = !this.flag"
   >
-    <i class="far fa-heart text-red-800 text-3xl"></i>
+    @if (!flag) {
+      <i class="fa-solid fa-heart text-red-800 text-3xl"></i>
+    } @else {
+      <i class="fa-regular fa-heart text-red-800 text-3xl"></i>
+    }
   </button>
 </div>

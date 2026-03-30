@@ -16,8 +16,10 @@ export const APP_APIS = {
   AUTH: {
     signup: `${environment.baseUrl}auth/signup`,
     login: `${environment.baseUrl}auth/signin`,
-    forgetPassword: `${environment.baseUrl}auth/forgotPasswords`,
     verifyToken: `${environment.baseUrl}auth/verifyToken`,
+    forgetPassword: `${environment.baseUrl}auth/forgotPasswords`,
+    verifyResetCode: `${environment.baseUrl}auth/verifyResetCode`,
+    resetPassword: `${environment.baseUrl}auth/resetPassword`,
   },
 
   CART: {

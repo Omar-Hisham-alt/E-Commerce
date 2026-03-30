@@ -9,4 +9,5 @@ import { RouterLink } from '@angular/router';
 })
 export class CardProductsComponent {
   @Input({ required: true }) product!: allproducts;
+  flag: boolean = true;
 }

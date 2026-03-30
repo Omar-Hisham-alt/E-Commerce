@@ -61,11 +61,6 @@
             >
           </li>
           <li>
-            <a routerLink="/cart" routerLinkActive="active-link" class="block py-2 px-3 capitalize"
-              >cart</a
-            >
-          </li>
-          <li>
             <a
               routerLink="/products"
               routerLinkActive="active-link"
@@ -89,10 +84,21 @@
               >brands</a
             >
           </li>
-          <li>
-            <a (click)="logOut()" class="block py-2 px-3 capitalize cursor-pointer">logout</a>
-          </li>
         }
+      </ul>
+    </div>
+
+    <div>
+      <ul class="flex items-center">
+        <li class="mx-2">
+          <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+        <li class="mx-2">
+          <a routerLink="/wishlist"><i class="fa-solid fa-heart"></i></a>
+        </li>
+        <li>
+          <a (click)="logOut()" class="block py-2 px-3 capitalize cursor-pointer">logout</a>
+        </li>
       </ul>
     </div>
   </div>

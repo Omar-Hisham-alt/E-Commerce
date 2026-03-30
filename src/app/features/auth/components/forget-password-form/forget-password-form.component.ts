@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { AuthInputComponent } from '../auth-input/auth-input.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { interval, take } from 'rxjs';
@@ -21,10 +21,10 @@ export class ForgetPasswordFormComponent {
   isLoading = false;
   successMessage = '';
   errorMessage = '';
-  redirectCounter = 3;
+  redirectCounter = 5;
 
   // Form Control
-  email: FormControl = new FormControl(null);
+  email: FormControl = new FormControl('', [Validators.required, Validators.email]);
 
   submitData(): void {
     if (this.isLoading) {
@@ -32,12 +32,13 @@ export class ForgetPasswordFormComponent {
     }
 
     console.log(this.email.value);
+    const emailValue = this.email.value;
 
     this.errorMessage = '';
     this.successMessage = '';
     this.isLoading = true;
 
-    this.authService.forgetPassword(this.email.value).subscribe({
+    this.authService.forgetPassword({ email: emailValue }).subscribe({
       next: (response) => {
         console.log(response);
         this.successMessage = response.message;
@@ -49,7 +50,7 @@ export class ForgetPasswordFormComponent {
           .subscribe(() => {
             --this.redirectCounter;
             if (this.redirectCounter === 0) {
-              // this.router.navigateByUrl('/home');
+              this.router.navigateByUrl('/verify-reset-code');
             }
           });
       },
