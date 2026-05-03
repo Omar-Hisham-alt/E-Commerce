@@ -1,5 +1,5 @@
-import { wishlistService } from './../../services/wishlist.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -7,15 +7,12 @@ import { Component, inject, OnInit } from '@angular/core';
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css',
 })
-export class WishlistComponent implements OnInit {
-  // Injected
-  public readonly wishlistService = inject(wishlistService);
+export class WishlistComponent {
+  @Input({ required: true }) product!: WishlistDetails;
+  public readonly wishlistService = inject(WishlistService);
 
-  ngOnInit(): void {
-    this.getWishlist();
-  }
-
-  getWishlist(): void {
+  deleteProduct(productId: string) {
+    this.wishlistService.deleteWishlistProduct(productId);
     this.wishlistService.getWishlist();
   }
 }

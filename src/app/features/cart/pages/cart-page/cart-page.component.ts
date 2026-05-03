@@ -23,4 +23,16 @@ export class CartPageComponent implements OnInit {
   getCart(): void {
     this.cartService.getCart();
   }
+
+  updateProductCount(count: number, productId: string): void {
+    this.cartService.updateCart(count, productId);
+  }
+
+  deleteProduct(productId: string): void {
+    this.cartService.deleteCartProduct(productId);
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
 }

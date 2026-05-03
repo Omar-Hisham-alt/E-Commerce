@@ -1,5 +1,5 @@
-import { wishlistService } from './../../services/wishlist.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { WishlistService } from '../../services/wishlist.service';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { WishlistComponent } from '../../components/wishlist/wishlist.component';
 import { LoadingSpinnerComponent } from '../../../../shared/components/loading-spinner/loading-spinner.component';
 import { ViewportScroller } from '@angular/common';
@@ -12,7 +12,7 @@ import { ViewportScroller } from '@angular/common';
 })
 export class WishlistPageComponent implements OnInit {
   // Injected
-  public readonly wishlistService = inject(wishlistService);
+  public readonly wishlistService = inject(WishlistService);
   public readonly viewportScroller = inject(ViewportScroller);
 
   ngOnInit(): void {

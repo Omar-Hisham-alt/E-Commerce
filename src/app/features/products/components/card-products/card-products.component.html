@@ -20,10 +20,21 @@
         </p>
       </div>
       <div>
-        <button class="btn-main w-full flex justify-center items-center mb-2">Add to Cart</button>
+        <button
+          (click)="addToCart(product._id)"
+          [disabled]="isLoading"
+          class="btn-main w-full flex justify-center items-center mb-2"
+        >
+          @if (isLoading) {
+            Adding...
+            <i class="fas fa-spinner fa-spin mx-2"></i>
+          } @else {
+            Add to Cart
+          }
+        </button>
         <div class="flex justify-between items-center">
           <span class="text-black font-bold inline-flex items-center leading-none text-sm">
-            Price {{ product.price }}
+            Price {{ product.price }} $
           </span>
           <span
             class="text-rating inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1"
@@ -36,13 +47,18 @@
   </div>
 
   <button
-    class="absolute top-5 end-5 cursor-pointer translate-x-[150%] group-hover:translate-x-0 duration-700"
-    (click)="this.flag = !this.flag"
+    (click)="addToWishlist(product._id)"
+    [disabled]="flagIsLoading"
+    class="absolute top-5 inset-e-5 cursor-pointer translate-x-[150%] group-hover:translate-x-0 duration-700"
   >
-    @if (!flag) {
-      <i class="fa-solid fa-heart text-red-800 text-3xl"></i>
+    @if (flagIsLoading) {
+      <i class="fas fa-spinner fa-spin mx-2"></i>
     } @else {
-      <i class="fa-regular fa-heart text-red-800 text-3xl"></i>
+      @if (flag) {
+        <i class="fa-solid fa-heart text-red-800 text-3xl"></i>
+      } @else {
+        <i class="fa-regular fa-heart text-red-800 text-3xl"></i>
+      }
     }
   </button>
 </div>

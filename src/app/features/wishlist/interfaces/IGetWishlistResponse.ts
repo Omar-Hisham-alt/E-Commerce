@@ -1,4 +1,4 @@
-interface IWishlistResponse {
+interface IGetWishlistResponse {
   status: string;
   count: number;
   data: WishlistDetails[];

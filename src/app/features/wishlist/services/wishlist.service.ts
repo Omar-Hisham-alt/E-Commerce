@@ -6,12 +6,12 @@ import { APP_APIS } from '../../../core/constants/app-apis';
 @Injectable({
   providedIn: 'root',
 })
-export class wishlistService extends BaseHttpService {
+export class WishlistService extends BaseHttpService {
   userWishlist!: WishlistDetails[];
 
   getWishlist() {
     this.http
-      .get<IWishlistResponse>(APP_APIS.WISHLIST.data, {
+      .get<IGetWishlistResponse>(APP_APIS.WISHLIST.data, {
         headers: {
           token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
         },
@@ -19,6 +19,32 @@ export class wishlistService extends BaseHttpService {
       .subscribe({
         next: (response) => {
           console.log(response);
+          this.userWishlist = response.data;
+        },
+      });
+  }
+
+  addToWishlist(productId: string) {
+    return this.http.post<IAddToWishlistResponse>(
+      APP_APIS.WISHLIST.data,
+      { productId: productId },
+      {
+        headers: {
+          token: localStorage.getItem(STORED_KEYS.USER_TOKEN) as string,
+        },
+      },
+    );
+  }
+
+  deleteWishlistProduct(productId: string) {
+    this.http
+      .delete<IDeleteWishlistResponse>(`${APP_APIS.WISHLIST.data}/${productId}`, {
+        headers: {
+          token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
+        },
+      })
+      .subscribe({
+        next: (response) => {
           this.userWishlist = response.data;
         },
       });

@@ -91,7 +91,16 @@
     <div>
       <ul class="flex items-center">
         <li class="mx-2">
-          <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a routerLink="/cart" class="relative"
+            ><i class="fa-solid fa-cart-shopping"></i>
+            @if (cartService.numOfCartItems) {
+              <div
+                class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-danger border-2 border-buffer rounded-full -top-2 -end-2"
+              >
+                {{ cartService.numOfCartItems }}
+              </div>
+            }
+          </a>
         </li>
         <li class="mx-2">
           <a routerLink="/wishlist"><i class="fa-solid fa-heart"></i></a>
