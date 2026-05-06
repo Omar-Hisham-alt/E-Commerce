@@ -17,7 +17,6 @@ export class CardProductsComponent {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
   private readonly toastrService = inject(ToastrService);
-  private readonly ngxSpinnerService = inject(NgxSpinnerService);
 
   @Input({ required: true }) product!: allproducts;
 
@@ -28,15 +27,9 @@ export class CardProductsComponent {
   addToCart(productId: string) {
     this.isLoading = true;
 
-    // Loading Spinner
-    this.ngxSpinnerService.show();
-
     // Calling API
     this.cartService.addToCart(productId).subscribe({
       next: (response) => {
-        // Loading Spinner
-        this.ngxSpinnerService.hide();
-
         // Response
         this.cartService.numOfCartItems = response.numOfCartItems;
         this.isLoading = false;
@@ -47,9 +40,6 @@ export class CardProductsComponent {
         });
       },
       error: (error: HttpErrorResponse) => {
-        // Loading Spinner
-        this.ngxSpinnerService.hide();
-
         // Toaster
         this.toastrService.error('Failed to Add Product!', undefined, {
           positionClass: 'toast-bottom-right',
@@ -61,15 +51,9 @@ export class CardProductsComponent {
   addToWishlist(productId: string) {
     this.flagIsLoading = true;
 
-    // Loading Spinner
-    this.ngxSpinnerService.show();
-
     // Calling API
     this.wishlistService.addToWishlist(productId).subscribe({
       next: () => {
-        // Loading Spinner
-        this.ngxSpinnerService.hide();
-
         this.flagIsLoading = false;
         this.flag = true;
 
@@ -79,9 +63,6 @@ export class CardProductsComponent {
         });
       },
       error: (error: HttpErrorResponse) => {
-        // Loading Spinner
-        this.ngxSpinnerService.hide();
-
         // Toaster
         this.toastrService.error('Failed to Add Product!', undefined, {
           positionClass: 'toast-bottom-right',

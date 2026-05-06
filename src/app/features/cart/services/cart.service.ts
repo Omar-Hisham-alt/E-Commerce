@@ -11,46 +11,24 @@ export class CartService extends BaseHttpService {
   numOfCartItems: number = 0;
 
   getCart() {
-    this.http
-      .get<IGetCartResponse>(APP_APIS.CART.data, {
-        headers: {
-          token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
-        },
-      })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.userCart = response.data;
-          this.numOfCartItems = response.numOfCartItems;
-        },
-      });
+    this.http.get<IGetCartResponse>(APP_APIS.CART.data).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.userCart = response.data;
+        this.numOfCartItems = response.numOfCartItems;
+      },
+    });
   }
 
   addToCart(productId: string) {
-    return this.http.post<IAddToCartResponse>(
-      APP_APIS.CART.data,
-      { productId: productId },
-      {
-        headers: {
-          token: localStorage.getItem(STORED_KEYS.USER_TOKEN) as string,
-        },
-      },
-    );
+    return this.http.post<IAddToCartResponse>(APP_APIS.CART.data, { productId: productId });
   }
 
   updateCart(count: number, productId: string) {
     this.http
-      .put<IUpdateCartResponse>(
-        `${APP_APIS.CART.data}/${productId}`,
-        {
-          count: count,
-        },
-        {
-          headers: {
-            token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
-          },
-        },
-      )
+      .put<IUpdateCartResponse>(`${APP_APIS.CART.data}/${productId}`, {
+        count: count,
+      })
       .subscribe({
         next: (response) => {
           console.log(response);
@@ -60,32 +38,20 @@ export class CartService extends BaseHttpService {
   }
 
   deleteCartProduct(productId: string) {
-    this.http
-      .delete<IUpdateCartResponse>(`${APP_APIS.CART.data}/${productId}`, {
-        headers: {
-          token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
-        },
-      })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.userCart = response.data;
-        },
-      });
+    this.http.delete<IUpdateCartResponse>(`${APP_APIS.CART.data}/${productId}`).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.userCart = response.data;
+      },
+    });
   }
 
   clearCart() {
-    this.http
-      .delete(APP_APIS.CART.data, {
-        headers: {
-          token: localStorage.getItem(STORED_KEYS.USER_TOKEN)!,
-        },
-      })
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          this.userCart.products = [];
-        },
-      });
+    this.http.delete(APP_APIS.CART.data).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.userCart.products = [];
+      },
+    });
   }
 }
