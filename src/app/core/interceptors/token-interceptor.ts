@@ -4,7 +4,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.urlWithParams.includes('cart')) {
+  if (!req.urlWithParams.includes('cart') && !req.urlWithParams.includes('wishlist')) {
     return next(req);
   }
 

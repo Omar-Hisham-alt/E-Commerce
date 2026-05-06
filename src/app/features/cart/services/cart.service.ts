@@ -1,7 +1,6 @@
-import { STORED_KEYS } from './../../../core/constants/stored-keys';
+import { Injectable } from '@angular/core';
 import { APP_APIS } from '../../../core/constants/app-apis';
 import { BaseHttpService } from '../../../core/services/utilities/base-http.service';
-import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
