@@ -29,8 +29,8 @@ export class LoginFormComponent {
   // Form Builder
   initLoginForm(): void {
     this.loginForm = this.fb.group({
-      email: ['ahmedmuttii4012125580@gmail.com'],
-      password: ['Ahmed@123'],
+      email: [''],
+      password: [''],
     });
   }
 
