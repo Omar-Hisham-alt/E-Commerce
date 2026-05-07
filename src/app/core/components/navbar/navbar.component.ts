@@ -1,3 +1,4 @@
+import { STORED_KEYS } from './../../constants/stored-keys';
 import { Component, inject, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../features/auth/services/auth.service';
@@ -14,6 +15,9 @@ export class NavbarComponent {
   private readonly authService = inject(AuthService);
   public readonly cartService = inject(CartService);
 
+  // variables
+  token!: string;
+
   @Input() isLogin = false;
 
   logOut() {
@@ -21,6 +25,9 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-    this.cartService.getCart();
+    this.token = localStorage.getItem(STORED_KEYS.USER_TOKEN) as string;
+    if (this.token) {
+      this.cartService.getCart();
+    }
   }
 }

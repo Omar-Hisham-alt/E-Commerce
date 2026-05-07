@@ -58,7 +58,6 @@ export class ResetPasswordComponent {
 
       this.authService.resetPassword(this.resetPasswordForm.value).subscribe({
         next: (response) => {
-          console.log(response);
           this.successMessage = 'Updated Password Successfully !';
           this.isLoading = false;
 

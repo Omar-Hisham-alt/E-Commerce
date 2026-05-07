@@ -34,9 +34,6 @@ export class PaymentPageComponent {
   }
 
   sendUserInfo(): void {
-    console.log(this.selectedMethod);
-    console.log(this.userInfoForm.value);
-
     switch (this.selectedMethod) {
       case 'cash': {
         this.payCashOrder();

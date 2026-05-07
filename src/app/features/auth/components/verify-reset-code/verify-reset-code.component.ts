@@ -31,7 +31,6 @@ export class VerifyResetCodeComponent {
       return;
     }
 
-    console.log(this.resetCode.value);
     const resetCodeValue = this.resetCode.value;
 
     this.errorMessage = '';
@@ -39,8 +38,7 @@ export class VerifyResetCodeComponent {
     this.isLoading = true;
 
     this.authService.verifyResetCode({ resetCode: resetCodeValue }).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
         this.successMessage = 'Reset Code Valid !';
         this.isLoading = false;
 
@@ -55,7 +53,6 @@ export class VerifyResetCodeComponent {
           });
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error.error.message);
         this.errorMessage = error.error.message;
         this.isLoading = false;
       },

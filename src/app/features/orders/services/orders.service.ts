@@ -20,7 +20,6 @@ export class OrdersService extends BaseHttpService {
 
       this.http.get<IAllOrdersResponse[]>(`${APP_APIS.ORDERS.orders}/${userId}`).subscribe({
         next: (response) => {
-          console.log(response);
           this.userOrders = response.reverse();
         },
       });

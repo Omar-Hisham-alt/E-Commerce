@@ -31,7 +31,6 @@ export class ForgetPasswordFormComponent {
       return;
     }
 
-    console.log(this.email.value);
     const emailValue = this.email.value;
 
     this.errorMessage = '';
@@ -40,7 +39,6 @@ export class ForgetPasswordFormComponent {
 
     this.authService.forgetPassword({ email: emailValue }).subscribe({
       next: (response) => {
-        console.log(response);
         this.successMessage = response.message;
         this.isLoading = false;
 
@@ -55,7 +53,6 @@ export class ForgetPasswordFormComponent {
           });
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error.error.message);
         this.errorMessage = error.error.message;
         this.isLoading = false;
       },

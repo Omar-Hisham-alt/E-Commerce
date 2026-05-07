@@ -58,7 +58,6 @@ export class LoginFormComponent {
 
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log(response);
           this.successMessage = 'Login Successfully !';
           this.isLoading = false;
 

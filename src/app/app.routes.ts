@@ -1,82 +1,82 @@
-import { ORDERS_ROUTES } from './features/orders/orders.routes';
-import { PAYMENT_ROUTES } from './features/payment/payment.routes';
-import { authGuard } from './core/guards/auth-guard';
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
-import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
-import { AUTH_ROUTES } from './features/auth/auth.routes';
-import { BRANDS_ROUTES } from './features/brands/brands.routes';
-import { Categories_Routes } from './features/categories/categories.routes';
-import { HOME_ROUTES } from './features/home/home.routes';
-import { PRODUCTS_ROUTES } from './features/products/products.routes';
+import { authGuard } from './core/guards/auth-guard';
 import { loggedGuard } from './core/guards/logged-guard';
-import { ProductDetailsComponent } from './features/products/pages/product-details/product-details.component';
-import { CART_ROUTES } from './features/cart/cart.routes';
-import { WISHLIST_ROUTES } from './features/wishlist/wishlist.routes';
 
 export const routes: Routes = [
   // auth
   {
     path: '',
     canActivate: [loggedGuard],
-    component: AuthLayoutComponent,
-    children: AUTH_ROUTES,
+    loadComponent: () =>
+      import('./core/layout/auth-layout/auth-layout.component').then((m) => m.AuthLayoutComponent),
+    loadChildren: () => import('./features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
 
   // user
   {
     path: '',
     canActivate: [authGuard],
-    component: MainLayoutComponent,
+    loadComponent: () =>
+      import('./core/layout/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
     children: [
       {
         path: '',
-        children: HOME_ROUTES,
+        loadChildren: () => import('./features/home/home.routes').then((m) => m.HOME_ROUTES),
       },
 
       {
         path: 'products',
-        children: PRODUCTS_ROUTES,
+        loadChildren: () =>
+          import('./features/products/products.routes').then((m) => m.PRODUCTS_ROUTES),
       },
 
       {
         path: 'details/:id',
-        component: ProductDetailsComponent,
+        loadComponent: () =>
+          import('./features/products/pages/product-details/product-details.component').then(
+            (m) => m.ProductDetailsComponent,
+          ),
       },
 
       {
         path: 'details/:id/:slug',
-        component: ProductDetailsComponent,
+        loadComponent: () =>
+          import('./features/products/pages/product-details/product-details.component').then(
+            (m) => m.ProductDetailsComponent,
+          ),
       },
 
       {
         path: 'categories',
-        children: Categories_Routes,
+        loadChildren: () =>
+          import('./features/categories/categories.routes').then((m) => m.Categories_Routes),
       },
 
       {
         path: 'brands',
-        children: BRANDS_ROUTES,
+        loadChildren: () => import('./features/brands/brands.routes').then((m) => m.BRANDS_ROUTES),
       },
 
       {
         path: 'cart',
-        children: CART_ROUTES,
+        loadChildren: () => import('./features/cart/cart.routes').then((m) => m.CART_ROUTES),
       },
 
       {
         path: 'payment/:cartId',
-        children: PAYMENT_ROUTES,
+        loadChildren: () =>
+          import('./features/payment/payment.routes').then((m) => m.PAYMENT_ROUTES),
       },
 
       {
         path: 'allorders',
-        children: ORDERS_ROUTES,
+        loadChildren: () => import('./features/orders/orders.routes').then((m) => m.ORDERS_ROUTES),
       },
 
       {
         path: 'wishlist',
-        children: WISHLIST_ROUTES,
+        loadChildren: () =>
+          import('./features/wishlist/wishlist.routes').then((m) => m.WISHLIST_ROUTES),
       },
     ],
   },

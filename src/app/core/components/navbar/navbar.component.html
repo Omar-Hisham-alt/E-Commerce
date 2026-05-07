@@ -1,4 +1,4 @@
-<nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
+<nav class="bg-neutral-primary fixed w-full z-20 top-0 inset-s-0 border-b border-default">
   <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="/images/freshcart-logo.svg" alt="freshcart-logo" />
@@ -88,14 +88,14 @@
       </ul>
     </div>
 
-    <div>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="flex items-center">
         <li class="mx-2">
           <a routerLink="/cart" class="relative"
             ><i class="fa-solid fa-cart-shopping"></i>
             @if (cartService.numOfCartItems) {
               <div
-                class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-danger border-2 border-buffer rounded-full -top-2 -end-2"
+                class="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-danger border-2 border-buffer rounded-full -top-2 -inset-e-2"
               >
                 {{ cartService.numOfCartItems }}
               </div>

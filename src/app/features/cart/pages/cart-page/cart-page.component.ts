@@ -30,9 +30,11 @@ export class CartPageComponent implements OnInit {
 
   deleteProduct(productId: string): void {
     this.cartService.deleteCartProduct(productId);
+    this.cartService.numOfCartItems--;
   }
 
   clearCart() {
     this.cartService.clearCart();
+    this.cartService.numOfCartItems = 0;
   }
 }

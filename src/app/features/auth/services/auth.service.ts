@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { APP_APIS } from '../../../core/constants/app-apis';
 import { STORED_KEYS } from './../../../core/constants/stored-keys';
 import { BaseHttpService } from './../../../core/services/utilities/base-http.service';
+import { CartService } from '../../cart/services/cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { BaseHttpService } from './../../../core/services/utilities/base-http.se
 export class AuthService extends BaseHttpService {
   // Injected
   private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
 
   signup(userData: {}) {
     return this.http.post(APP_APIS.AUTH.signup, userData);
@@ -42,6 +44,7 @@ export class AuthService extends BaseHttpService {
 
   logOut(): void {
     localStorage.clear();
+    this.cartService.numOfCartItems = 0;
     this.router.navigateByUrl('/login');
   }
 

@@ -83,8 +83,6 @@ export class RegisterFormComponent {
   }
 
   submitData(): void {
-    // console.log(this.userEmail);
-
     if (this.isLoading) {
       return;
     }
@@ -97,8 +95,7 @@ export class RegisterFormComponent {
       this.isLoading = true;
 
       this.authService.signup(this.registerForm.value).subscribe({
-        next: (response) => {
-          console.log(response);
+        next: () => {
           this.successMessage = 'Account Created Successfully !';
           this.isLoading = false;
 

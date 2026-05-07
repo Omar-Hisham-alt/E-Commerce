@@ -12,7 +12,6 @@ export class CartService extends BaseHttpService {
   getCart() {
     this.http.get<IGetCartResponse>(APP_APIS.CART.data).subscribe({
       next: (response) => {
-        console.log(response);
         this.userCart = response.data;
         this.numOfCartItems = response.numOfCartItems;
       },
@@ -30,7 +29,6 @@ export class CartService extends BaseHttpService {
       })
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.userCart = response.data;
         },
       });
@@ -39,7 +37,6 @@ export class CartService extends BaseHttpService {
   deleteCartProduct(productId: string) {
     this.http.delete<IUpdateCartResponse>(`${APP_APIS.CART.data}/${productId}`).subscribe({
       next: (response) => {
-        console.log(response);
         this.userCart = response.data;
       },
     });
@@ -47,8 +44,7 @@ export class CartService extends BaseHttpService {
 
   clearCart() {
     this.http.delete(APP_APIS.CART.data).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
         this.userCart.products = [];
       },
     });

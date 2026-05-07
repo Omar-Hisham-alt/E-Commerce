@@ -11,7 +11,6 @@ export class WishlistService extends BaseHttpService {
   getWishlist() {
     this.http.get<IGetWishlistResponse>(APP_APIS.WISHLIST.data).subscribe({
       next: (response) => {
-        console.log(response);
         this.userWishlist = response.data;
       },
     });
