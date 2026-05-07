@@ -1,9 +1,4 @@
 import { Routes } from '@angular/router';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { ForgetPasswordPageComponent } from './pages/forget-password-page/forget-password-page.component';
-import { ResetCodePageComponent } from './pages/reset-code-page/reset-code-page.component';
-import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 
 export const AUTH_ROUTES: Routes = [
   {
@@ -14,26 +9,37 @@ export const AUTH_ROUTES: Routes = [
 
   {
     path: 'login',
-    component: LoginPageComponent,
+    loadComponent: () =>
+      import('./pages/login-page/login-page.component').then((m) => m.LoginPageComponent),
   },
 
   {
     path: 'register',
-    component: RegisterPageComponent,
+    loadComponent: () =>
+      import('./pages/register-page/register-page.component').then((m) => m.RegisterPageComponent),
   },
 
   {
     path: 'forget-password',
-    component: ForgetPasswordPageComponent,
+    loadComponent: () =>
+      import('./pages/forget-password-page/forget-password-page.component').then(
+        (m) => m.ForgetPasswordPageComponent,
+      ),
   },
 
   {
     path: 'verify-reset-code',
-    component: ResetCodePageComponent,
+    loadComponent: () =>
+      import('./pages/reset-code-page/reset-code-page.component').then(
+        (m) => m.ResetCodePageComponent,
+      ),
   },
 
   {
     path: 'reset-password',
-    component: ResetPasswordPageComponent,
+    loadComponent: () =>
+      import('./pages/reset-password-page/reset-password-page.component').then(
+        (m) => m.ResetPasswordPageComponent,
+      ),
   },
 ];
