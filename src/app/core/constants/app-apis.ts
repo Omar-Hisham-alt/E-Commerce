@@ -29,4 +29,13 @@ export const APP_APIS = {
   WISHLIST: {
     data: `${environment.baseUrl}wishlist`,
   },
+
+  PAYMENT: {
+    online: `${environment.baseUrl}orders/checkout-session`,
+    cash: `${environment.baseUrl}orders`,
+  },
+
+  ORDERS: {
+    orders: `${environment.baseUrl}orders/user`,
+  },
 };

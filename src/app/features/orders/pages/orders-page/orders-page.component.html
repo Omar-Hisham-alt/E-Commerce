@@ -1,0 +1,146 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Empty State -->
+  @if (!ordersService.userOrders || ordersService.userOrders.length === 0) {
+    <div class="flex flex-col items-center justify-center py-20 text-center">
+      <h2 class="text-2xl font-bold text-gray-700">No Orders Found</h2>
+
+      <p class="text-gray-500 mt-2">You haven't placed any orders yet.</p>
+    </div>
+  }
+
+  <!-- Orders -->
+  @for (order of ordersService.userOrders; track order._id) {
+    <div class="mb-8">
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+        <!-- Header -->
+        <div
+          class="bg-gray-50 border-b px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div>
+            <h2 class="text-lg font-bold text-gray-800">Order id: {{ order._id }}</h2>
+
+            <p class="text-sm text-gray-500 mt-1">
+              {{ order.createdAt | date: 'medium' }}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <!-- Paid -->
+            <span
+              class="px-4 py-1 rounded-full text-sm font-semibold"
+              [class.bg-green-100]="order.isPaid"
+              [class.text-green-700]="order.isPaid"
+              [class.bg-red-100]="!order.isPaid"
+              [class.text-red-700]="!order.isPaid"
+            >
+              {{ order.isPaid ? 'Paid' : 'Unpaid' }}
+            </span>
+
+            <!-- Delivery -->
+            <span
+              class="px-4 py-1 rounded-full text-sm font-semibold"
+              [class.bg-blue-100]="order.isDelivered"
+              [class.text-blue-700]="order.isDelivered"
+              [class.bg-yellow-100]="!order.isDelivered"
+              [class.text-yellow-700]="!order.isDelivered"
+            >
+              {{ order.isDelivered ? 'Delivered' : 'Pending Delivery' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="p-6">
+          @for (item of order.cartItems; track item._id) {
+            <div class="flex flex-col md:flex-row gap-4 py-4 border-b last:border-b-0">
+              <!-- Image -->
+              <div class="w-full md:w-28 h-28 shrink-0">
+                <img
+                  [src]="item.product.imageCover"
+                  [alt]="item.product.title"
+                  class="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+
+              <!-- Info -->
+              <div class="flex-1">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-800">
+                      {{ item.product.title }}
+                    </h3>
+
+                    <p class="text-sm text-gray-500 mt-1">
+                      Category:
+                      {{ item.product.category.name }}
+                    </p>
+
+                    <p class="text-sm text-gray-500">
+                      Brand:
+                      {{ item.product.brand.name }}
+                    </p>
+
+                    <p class="text-sm text-gray-500">
+                      Quantity:
+                      {{ item.count }}
+                    </p>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="text-right">
+                    <p class="text-lg font-bold text-main">{{ item.price }} EGP</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-50 px-6 py-5 flex flex-col lg:flex-row lg:justify-between gap-6">
+          <!-- Shipping -->
+          <div class="space-y-1">
+            <h4 class="font-semibold text-gray-800">Shipping Address</h4>
+
+            <p class="text-sm text-gray-600">
+              {{ order.shippingAddress.details }}
+            </p>
+
+            <p class="text-sm text-gray-600">
+              {{ order.shippingAddress.city }}
+            </p>
+
+            <p class="text-sm text-gray-600">
+              {{ order.shippingAddress.phone }}
+            </p>
+          </div>
+
+          <!-- Payment -->
+          <div class="space-y-1 text-sm text-gray-700">
+            <p>
+              Payment Method:
+              <span class="font-semibold">
+                {{ order.paymentMethodType }}
+              </span>
+            </p>
+
+            <p>
+              Shipping:
+              <span class="font-semibold"> {{ order.shippingPrice }} EGP </span>
+            </p>
+
+            <p>
+              Tax:
+              <span class="font-semibold"> {{ order.taxPrice }} EGP </span>
+            </p>
+
+            <p class="text-lg font-bold text-main">
+              Total:
+              {{ order.totalOrderPrice }} EGP
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

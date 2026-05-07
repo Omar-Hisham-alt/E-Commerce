@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 
 const cache = new Map<string, { response: HttpResponse<any>; expiry: number }>();
 const CACHE_DURATION = 2 * 60 * 10000; // 10 minutes
-const skipCache: string[] = ['cart', 'wishlist'];
+const skipCache: string[] = ['cart', 'wishlist', 'orders'];
 
 export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.method !== 'GET') return next(req);

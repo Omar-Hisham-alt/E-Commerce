@@ -1,3 +1,5 @@
+import { ORDERS_ROUTES } from './features/orders/orders.routes';
+import { PAYMENT_ROUTES } from './features/payment/payment.routes';
 import { authGuard } from './core/guards/auth-guard';
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
@@ -60,6 +62,16 @@ export const routes: Routes = [
       {
         path: 'cart',
         children: CART_ROUTES,
+      },
+
+      {
+        path: 'payment/:cartId',
+        children: PAYMENT_ROUTES,
+      },
+
+      {
+        path: 'allorders',
+        children: ORDERS_ROUTES,
       },
 
       {
